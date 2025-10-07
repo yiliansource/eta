@@ -1,7 +1,7 @@
 import type { RemarkPlugin } from "@astrojs/markdown-remark";
 import { visit } from "unist-util-visit";
 
-const remarkProofs: RemarkPlugin = () => {
+const remarkProof: RemarkPlugin = () => {
     return (tree, file) => {
         visit(tree, (node) => {
             if (node.type !== "containerDirective") return;
@@ -17,4 +17,4 @@ const remarkProofs: RemarkPlugin = () => {
     };
 };
 
-export default remarkProofs;
+export default remarkProof;

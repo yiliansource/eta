@@ -9,17 +9,20 @@ import remarkMath from "remark-math";
 import rehypeKatex from "rehype-katex";
 import remarkDirective from "remark-directive";
 
-import remarkTheorems from "./src/lib/remark/theorem";
-import remarkProofs from "./src/lib/remark/proof";
+import remarkTheorem from "./src/lib/remark/theorem";
+import remarkProof from "./src/lib/remark/proof";
 import remarkExcerpt from "./src/lib/remark/excerpt";
+import remarkLabel from "./src/lib/remark/label";
 
 export default defineConfig({
     vite: {
         plugins: [tailwindcss()],
     },
-    integrations: [mdx(), react()],
-    markdown: {
-        remarkPlugins: [remarkDirective, remarkTheorems, remarkProofs, remarkMath, remarkExcerpt],
-        rehypePlugins: [rehypeKatex],
-    },
+    integrations: [
+        mdx({
+            remarkPlugins: [remarkLabel, remarkExcerpt, remarkTheorem, remarkProof, remarkDirective, remarkMath],
+            rehypePlugins: [rehypeKatex],
+        }),
+        react(),
+    ],
 });

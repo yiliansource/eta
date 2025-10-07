@@ -19,6 +19,7 @@ const focused = node.href === pathname;
             <a
                 href={node.href}
                 class={twMerge(
+                    "hover:underline underline-offset-2 decoration-2",
                     expanded ? "text-foreground" : "text-neutral-400 dark:text-neutral-400",
                     focused && "font-bold"
                 )}

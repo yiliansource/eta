@@ -3,7 +3,7 @@ import { visit } from "unist-util-visit";
 
 const BLOCK_NAMES = new Set(["theorem", "lemma", "proposition", "corollary", "definition", "example", "remark"]);
 
-const remarkTheorems: RemarkPlugin = () => {
+const remarkTheorem: RemarkPlugin = () => {
     return (tree, file) => {
         let counter = 1;
         visit(tree, (node) => {
@@ -33,7 +33,7 @@ const remarkTheorems: RemarkPlugin = () => {
     };
 };
 
-export default remarkTheorems;
+export default remarkTheorem;
 
 function capitalize(s: string) {
     return s.charAt(0).toUpperCase() + s.slice(1);

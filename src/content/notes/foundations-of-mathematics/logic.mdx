@@ -3,25 +3,27 @@ title: Logic
 order: 0
 ---
 
-**Logic** forms the backbone of mathematical reasoning, providing the rules and structure needed to analyze statements, construct proofs, and ensure the validity of arguments. By establishing clear principles for deduction and inference, logic helps mathematicians build reliable foundations for all areas of mathematics, making it essential for understanding and developing rigorous mathematical theories.
-
 ## Statements
 
-In mathematical logic, a statement is a declarative sentence that is either true or false, but not both. Statements are the basic building blocks of logical reasoning and proofs. Examples of statements include "2 is an even number" and "All prime numbers greater than 2 are odd." Statements can be combined using logical connectives such as "and," "or," and "not" to form more complex expressions.
+To avoid ambiguity when expressing mathematical statements in various languages, which arises before even including slang, modern mathematicatians have moved to using an artifical, formalised language to express theories. This starts by specifying what a _statement_ even is. Considering that a goal is to classify them into statements that are either _true_ or _false_, we can say that a statement is a combination of natural and formal language that can be assigned a _truthiness_ value of $\top$ (true) and $\bot$ (false).
+
+If $A$ is a statement we write $w(A)$ for the truthiness value of $A$. For example for the statement $A_1 = $ "An ape is a fish" we would have $w(A_1) = \bot$, while the statement $A_2 = $ "A rose is a plant" would yield $w(A_2) = \top$.
+
+The truthiness value of simple-looking statements often cannot be simply determined: One need only consider open, unsolved problems in mathematics:
+
+$$
+A = \textrm{``}e + \pi \textrm{ is rational"}, \qquad w(A) = \ ?
+$$
+
+Note that not any "sentence" results in a statement, since we may not be able to assign a (sensible) truthiness value, for example with "The number 3 is larger" and "If not yellow then red".
+
+Statements $A, B$ can also be composed together, via a few "elementary" operations:
+
+- $\lnot A$ is the statement "not $A$", which is true if and only if $A$ is false.
+- $A \lor B$ is the statement "$A$ or $B$", which is true if and only if either $A$ or $B$ is true (or both).
+- $A \land B$ is the statement "$A$ and $B$", which is true if and only if both $A$ and $B$ are true.
+- $A \implies B$ is the statement "$A$ implies $B$", which is true if and only if $B$ is always true if $A$ is also true.
 
 ## Tautologies and Conclusions
-
-:::lemma
-This is a **lemma**. It can include $x = 3$ math.
-In mathematical logic, a statement is a declarative sentence that is either true or false, but not both. Statements are the basic building blocks of logical reasoning and proofs. Examples of statements include "2 is an even number" and "All prime numbers greater than 2 are odd." Statements can be combined using logical connectives such as "and," "or," and "not" to form more complex expressions.
-:::
-
-:::theorem
-This is a theorem. It has _less_ content.
-:::
-
-:::proof
-This is a proof.
-:::
 
 ## Quantifiers

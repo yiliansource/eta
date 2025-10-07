@@ -14,19 +14,11 @@ const { metadata = {} } = Astro.props;
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/ico" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="theme-color" content="#171717" />
 
-        <BaseHead title={metadata.title ?? "Math Notes"} />
-        {metadata.description && <meta name="description" content={metadata.description} />}
+        <BaseHead {...metadata} />
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" />
-
-        <meta property="og:title" content={metadata.title ?? "Math Notes"} />
-        <meta property="og:type" content="website" />
-        <meta property="og:image" content="/icon.png" />
-        {metadata.description && <meta name="og:description" content={metadata.description} />}
 
         <ThemeScript />
     </head>

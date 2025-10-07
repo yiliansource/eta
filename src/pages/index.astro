@@ -3,8 +3,14 @@ import About from "../components/About.mdx";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-    <article class="prose dark:prose-invert prose-headings:font-mono">
+<Layout
+    metadata={{
+        title: "About",
+        description:
+            "A collection of math notes that have the goal of introducing university-level mathematics in a simplified fashion, without sacrificing rigorosity.",
+    }}
+>
+    <article class="prose dark:prose-invert prose-headings:font-mono prose-h1:text-5xl">
         <About />
     </article>
 </Layout>

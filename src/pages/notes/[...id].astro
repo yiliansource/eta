@@ -4,6 +4,7 @@ import Layout from "../../layouts/Layout.astro";
 import { buildCrumbs, getNavigationTree } from "../../lib/navigation";
 import { interweave } from "../../lib/arrays";
 import * as components from "../../lib/remark/mdx-components";
+import { twMerge } from "tailwind-merge";
 
 export async function getStaticPaths() {
     const notes = await getCollection("notes");
@@ -29,14 +30,20 @@ const { Content, remarkPluginFrontmatter } = await render(post);
         description: remarkPluginFrontmatter.description,
     }}
 >
-    <article class="prose dark:prose-invert prose-headings:font-mono hyphens-auto text-justify">
+    <article
+        class={twMerge(
+            "prose dark:prose-invert hyphens-auto text-justify",
+            "prose-headings:font-mono",
+            "prose-a:text-blue-500 prose-a:underline-offset-3 prose-a:decoration-[2px]"
+        )}
+    >
         {
             crumbs && crumbs.length > 1 && (
                 <span class="not-prose font-mono text-neutral-500 dark:text-neutral-400">
                     {interweave(
                         crumbs
                             .map((c) => (
-                                <a href={c.href} class="inline-block hover:underline">
+                                <a href={c.href} class="inline-block hover:underline decoration-2 underline-offset-2">
                                     {c.title?.trim()}
                                 </a>
                             ))
