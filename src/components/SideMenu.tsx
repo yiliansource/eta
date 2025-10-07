@@ -72,6 +72,11 @@ export function SideNavigation({ tree, pathname }: { tree: NavigationTreeNode[];
                             <div className="mt-4 px-3">
                                 <Navigation tree={tree} pathname={pathname} />
                             </div>
+                            <div className="mt-auto mb-0 py-2 px-3 opacity-60">
+                                <a href="https://hornik.dev" target="_blank" className="text-sm">
+                                    &copy; {new Date().getFullYear()} Ian Hornik
+                                </a>
+                            </div>
                         </motion.div>
                     </>
                 )}
