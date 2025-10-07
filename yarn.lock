@@ -2473,6 +2473,7 @@ __metadata:
     rehype-katex: "npm:^7.0.1"
     remark-directive: "npm:^4.0.0"
     remark-math: "npm:^6.0.0"
+    remark-parse: "npm:^11.0.0"
     tailwind-merge: "npm:^3.3.1"
     tailwindcss: "npm:^4.1.14"
     unist-util-is: "npm:^6.0.0"

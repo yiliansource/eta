@@ -5,6 +5,8 @@ import { Toggle } from "astro-theme-toggle";
 import "../styles/global.css";
 import { SideNavigation } from "../components/SideNavigation";
 import BaseHead from "../components/BaseHead.astro";
+
+const { metadata = {} } = Astro.props;
 ---
 
 <!doctype html>
@@ -14,8 +16,18 @@ import BaseHead from "../components/BaseHead.astro";
         <meta name="viewport" content="width=device-width" />
         <link rel="icon" type="image/ico" href="/favicon.ico" />
         <meta name="generator" content={Astro.generator} />
-        <BaseHead title={Astro.props.title ?? "Math Notes"} />
+        <meta name="theme-color" content="#171717" />
+
+        <BaseHead title={metadata.title ?? "Math Notes"} />
+        {metadata.description && <meta name="description" content={metadata.description} />}
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" />
+
+        <meta property="og:title" content={metadata.title ?? "Math Notes"} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/icon.png" />
+        {metadata.description && <meta name="og:description" content={metadata.description} />}
+
         <ThemeScript />
     </head>
     <body class="min-h-dvh">

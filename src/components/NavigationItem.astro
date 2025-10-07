@@ -31,7 +31,7 @@ const focused = node.href === pathname;
     }
     {
         expanded && node.children && node.children.length > 0 && (
-            <ol role="group" class="pl-6 list-[lower-roman]" type="i">
+            <ol class="pl-6 list-[lower-roman]" type="i">
                 {node.children
                     .toSorted((a, b) => a.order - b.order)
                     .map((n) => (

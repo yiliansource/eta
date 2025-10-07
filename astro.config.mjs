@@ -11,6 +11,7 @@ import remarkDirective from "remark-directive";
 
 import remarkTheorems from "./src/lib/remark/theorem";
 import remarkProofs from "./src/lib/remark/proof";
+import remarkExcerpt from "./src/lib/remark/excerpt";
 
 export default defineConfig({
     vite: {
@@ -18,7 +19,7 @@ export default defineConfig({
     },
     integrations: [mdx(), react()],
     markdown: {
-        remarkPlugins: [remarkMath, remarkDirective, remarkTheorems, remarkProofs],
+        remarkPlugins: [remarkDirective, remarkTheorems, remarkProofs, remarkMath, remarkExcerpt],
         rehypePlugins: [rehypeKatex],
     },
 });

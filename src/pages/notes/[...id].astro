@@ -20,10 +20,15 @@ export async function getStaticPaths() {
 }
 
 const { post, crumbs } = Astro.props;
-const { Content } = await render(post);
+const { Content, remarkPluginFrontmatter } = await render(post);
 ---
 
-<Layout title={post.data.title}>
+<Layout
+    metadata={{
+        title: post.data.title,
+        description: remarkPluginFrontmatter.description,
+    }}
+>
     <article class="prose dark:prose-invert prose-headings:font-mono hyphens-auto text-justify">
         {
             crumbs && crumbs.length > 1 && (
