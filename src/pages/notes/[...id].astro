@@ -1,0 +1,49 @@
+---
+import { getCollection, render } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+import { buildCrumbs, getNavigationTree } from "../../lib/navigation";
+import { interweave } from "../../lib/arrays";
+import * as components from "../../lib/remark/mdx-components";
+
+export async function getStaticPaths() {
+    const notes = await getCollection("notes");
+    const tree = await getNavigationTree();
+
+    return notes.map((post) => {
+        const crumbs = tree.map((t) => buildCrumbs(t, post.id.replace(/\/_index$/, ""))).find(Boolean);
+
+        return {
+            params: { id: post.id.replace(/_index$/, "") },
+            props: { post, crumbs },
+        };
+    });
+}
+
+const { post, crumbs } = Astro.props;
+const { Content } = await render(post);
+---
+
+<Layout title={post.data.title}>
+    <article class="prose dark:prose-invert prose-headings:font-mono hyphens-auto text-justify">
+        {
+            crumbs && crumbs.length > 1 && (
+                <span class="not-prose font-mono text-neutral-500 dark:text-neutral-400">
+                    {interweave(
+                        crumbs
+                            .map((c) => (
+                                <a href={c.href} class="inline-block hover:underline">
+                                    {c.title?.trim()}
+                                </a>
+                            ))
+                            .slice(0, -1),
+                        (e, i) => (
+                            <span class="mx-2 text-neutral-300 dark:text-neutral-600">/</span>
+                        )
+                    )}
+                </span>
+            )
+        }
+        <h1 class="mb-10 font-bold text-5xl leading-14 text-left">{post.data.title}</h1>
+        <Content components={{ ...components }} />
+    </article>
+</Layout>

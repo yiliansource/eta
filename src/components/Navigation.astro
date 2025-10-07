@@ -1,0 +1,12 @@
+---
+import NavigationItem from "./NavigationItem.astro";
+import { getNavigationTree } from "../lib/navigation";
+
+const tree = await getNavigationTree();
+---
+
+<nav>
+    <ol class="leading-8 font-mono">
+        {tree.toSorted((a, b) => a.order - b.order).map((t) => <NavigationItem node={t} />)}
+    </ol>
+</nav>

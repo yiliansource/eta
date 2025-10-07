@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@import "@fontsource/geist-sans";
+@import "@fontsource/cascadia-code";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+@theme {
+    --color-foreground: var(--color-neutral-900);
+    --color-background: var(--color-neutral-50);
+}
+@theme inline {
+    --font-sans: "Geist Sans";
+    --font-mono: "Cascadia Code";
+}
+
+@layer theme {
+    :root,
+    :host {
+        @variant dark {
+            --color-foreground: var(--color-neutral-100);
+            --color-background: var(--color-neutral-900);
+        }
+    }
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: var(--font-sans), sans-serif;
+}
+
+body {
+    color: var(--color-foreground);
+    background-color: var(--color-background);
+}

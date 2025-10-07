@@ -1,0 +1,43 @@
+---
+import { anyInTree, type NavigationTreeNode } from "../lib/navigation";
+import { twMerge } from "tailwind-merge";
+
+export interface Props {
+    node: NavigationTreeNode;
+}
+
+const { node } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, "");
+
+const expanded = node.href && anyInTree(node, (n) => n.href === pathname);
+const focused = node.href === pathname;
+---
+
+<li class="marker:text-neutral-400 dark:marker:text-neutral-500 marker:text-sm">
+    {
+        node.href ? (
+            <a
+                href={node.href}
+                class={twMerge(
+                    expanded ? "text-foreground" : "text-neutral-400 dark:text-neutral-400",
+                    focused && "font-bold"
+                )}
+            >
+                {node.title ?? node.key}
+            </a>
+        ) : (
+            <span>{node.title ?? node.key}</span>
+        )
+    }
+    {
+        expanded && node.children && node.children.length > 0 && (
+            <ol role="group" class="pl-6 list-[lower-roman]" type="i">
+                {node.children
+                    .toSorted((a, b) => a.order - b.order)
+                    .map((n) => (
+                        <Astro.self node={n} />
+                    ))}
+            </ol>
+        )
+    }
+</li>

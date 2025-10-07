@@ -1,0 +1,49 @@
+---
+import Navigation from "../components/Navigation.astro";
+import { ThemeScript } from "astro-theme-toggle";
+import { Toggle } from "astro-theme-toggle";
+import "../styles/global.css";
+import { SideNavigation } from "../components/SideNavigation";
+import BaseHead from "../components/BaseHead.astro";
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/ico" href="/favicon.ico" />
+        <meta name="generator" content={Astro.generator} />
+        <BaseHead title={Astro.props.title ?? "Math Notes"} />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.23/dist/katex.min.css" />
+        <ThemeScript />
+    </head>
+    <body class="min-h-dvh">
+        <div class="relative mx-auto flex flex-col lg:flex-row max-w-7xl px-3 gap-x-20 h-full">
+            <div class="grow-0 shrink lg:basis-1/3 select-none">
+                <div class="sticky top-0 pt-24 h-dvh not-lg:hidden flex flex-col items-start">
+                    <a href="/" class="-ml-4 -mt-4 mb-12 block font-mono text-6xl font-bold aspect-square text-center"
+                        >η</a
+                    >
+                    <Navigation />
+                    <div class="w-full font-mono py-2 mb-0 mt-auto flex flex-row justify-between opacity-60">
+                        <a href="https://hornik.dev" target="_blank" class="text-sm hover:underline"
+                            >&copy; {new Date().getFullYear()} Ian Hornik</a
+                        >
+                        <Toggle class="!size-6" />
+                    </div>
+                </div>
+                <div
+                    class="fixed top-0 w-full bg-background border-b border-neutral-200 dark:border-neutral-700 lg:hidden -mx-3 py-4 px-3 flex flex-row justify-between lg:basis-2/3"
+                >
+                    <a href="/" class="block px-1 -mt-3 font-mono text-4xl font-bold text-center">η</a>
+                    <SideNavigation />
+                </div>
+            </div>
+
+            <main class="flex grow flex-col pb-48 pt-24">
+                <slot />
+            </main>
+        </div>
+    </body>
+</html>
