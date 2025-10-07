@@ -1,10 +1,11 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import { buildCrumbs, getNavigationTree } from "../../lib/navigation";
+import { getNavigationTree } from "../../lib/navigation";
 import { interweave } from "../../lib/arrays";
 import * as components from "../../lib/remark/mdx-components";
 import { twMerge } from "tailwind-merge";
+import { buildCrumbs } from "../../lib/navigation-utils";
 
 export async function getStaticPaths() {
     const notes = await getCollection("notes");
@@ -33,7 +34,8 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     <article
         class={twMerge(
             "prose dark:prose-invert hyphens-auto text-justify",
-            "prose-headings:font-mono",
+            "prose-headings:font-mono prose-headings:text-left prose-headings:leading-tight",
+            "not-lg:prose-h1:text-4xl",
             "prose-a:text-blue-500 prose-a:underline-offset-3 prose-a:decoration-[2px]"
         )}
     >

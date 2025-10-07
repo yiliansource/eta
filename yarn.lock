@@ -898,6 +898,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@phosphor-icons/react@npm:^2.1.10":
+  version: 2.1.10
+  resolution: "@phosphor-icons/react@npm:2.1.10"
+  peerDependencies:
+    react: ">= 16.8"
+    react-dom: ">= 16.8"
+  checksum: 10c0/9a469e1bdcabcd3db02eda13142d57be250847ebbeb82b33c8900580a6a23ed4f411dbb9b9deacef726ff3fa8ffc960c8868b518e448bd2cee654cedf3fa4bda
+  languageName: node
+  linkType: hard
+
 "@pkgjs/parseargs@npm:^0.11.0":
   version: 0.11.0
   resolution: "@pkgjs/parseargs@npm:0.11.0"
@@ -2460,6 +2470,7 @@ __metadata:
     "@astrojs/react": "npm:^4.4.0"
     "@fontsource/cascadia-code": "npm:^5.2.3"
     "@fontsource/geist-sans": "npm:^5.2.5"
+    "@phosphor-icons/react": "npm:^2.1.10"
     "@tailwindcss/typography": "npm:^0.5.19"
     "@tailwindcss/vite": "npm:^4.1.14"
     "@types/react": "npm:^19.2.2"
@@ -2467,6 +2478,8 @@ __metadata:
     astro: "npm:^5.14.1"
     astro-theme-toggle: "npm:^0.7.0"
     katex: "npm:^0.16.23"
+    motion: "npm:^12.23.22"
+    phosphor-astro: "npm:^2.1.0"
     prettier: "npm:^3.6.2"
     react: "npm:^19.2.0"
     react-dom: "npm:^19.2.0"
@@ -2562,6 +2575,28 @@ __metadata:
     cross-spawn: "npm:^7.0.6"
     signal-exit: "npm:^4.0.1"
   checksum: 10c0/8986e4af2430896e65bc2788d6679067294d6aee9545daefc84923a0a4b399ad9c7a3ea7bd8c0b2b80fdf4a92de4c69df3f628233ff3224260e9c1541a9e9ed3
+  languageName: node
+  linkType: hard
+
+"framer-motion@npm:^12.23.22":
+  version: 12.23.22
+  resolution: "framer-motion@npm:12.23.22"
+  dependencies:
+    motion-dom: "npm:^12.23.21"
+    motion-utils: "npm:^12.23.6"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/66d0e8cd0b99fdbc39bb6d8c45dee9f710003c1919d306d18b21c2b3cb4233f9546e1fc4f01dcff03014d12c561fd973e1a1678958f81ca1d7eb98db2ce04b0b
   languageName: node
   linkType: hard
 
@@ -4128,6 +4163,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"motion-dom@npm:^12.23.21":
+  version: 12.23.21
+  resolution: "motion-dom@npm:12.23.21"
+  dependencies:
+    motion-utils: "npm:^12.23.6"
+  checksum: 10c0/0eee880c955ff0235f1e95e3cb07f8ab2bd446bc56eb55c1c4a9930536c66b06da496167130c7bafeb2084fddb4d484db6358bb7144e9457d93e71c523277f33
+  languageName: node
+  linkType: hard
+
+"motion-utils@npm:^12.23.6":
+  version: 12.23.6
+  resolution: "motion-utils@npm:12.23.6"
+  checksum: 10c0/c058e8ba6423b3baa63e985bcc669877ee7d9579d938f5348b4e60c5ea1b4b33dd7f4877434436a4a5807f3cf00370d3fd4079a6fdd6309c5c87aa62b311a897
+  languageName: node
+  linkType: hard
+
+"motion@npm:^12.23.22":
+  version: 12.23.22
+  resolution: "motion@npm:12.23.22"
+  dependencies:
+    framer-motion: "npm:^12.23.22"
+    tslib: "npm:^2.4.0"
+  peerDependencies:
+    "@emotion/is-prop-valid": "*"
+    react: ^18.0.0 || ^19.0.0
+    react-dom: ^18.0.0 || ^19.0.0
+  peerDependenciesMeta:
+    "@emotion/is-prop-valid":
+      optional: true
+    react:
+      optional: true
+    react-dom:
+      optional: true
+  checksum: 10c0/dffcae42cafa5552d983f47eb0f36cf3d6f4fedaf24dc802c7348f95f86f5c504e2a354051a0ceed1593af3a9c8715c613d318aca92bc902c8df3a57529077d8
+  languageName: node
+  linkType: hard
+
 "mrmime@npm:^2.0.1":
   version: 2.0.1
   resolution: "mrmime@npm:2.0.1"
@@ -4389,6 +4461,13 @@ __metadata:
     lru-cache: "npm:^10.2.0"
     minipass: "npm:^5.0.0 || ^6.0.2 || ^7.0.0"
   checksum: 10c0/32a13711a2a505616ae1cc1b5076801e453e7aae6ac40ab55b388bb91b9d0547a52f5aaceff710ea400205f18691120d4431e520afbe4266b836fadede15872d
+  languageName: node
+  linkType: hard
+
+"phosphor-astro@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "phosphor-astro@npm:2.1.0"
+  checksum: 10c0/3ecf70d3ce795a9b6a6718e31839cc57c8d804fe11f81ec0421596f302e8a04bc7708af209bf32159a2e4ddf667fff0ab22d172a861756132405a6fffc3312fa
   languageName: node
   linkType: hard
 
