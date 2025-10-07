@@ -33,5 +33,6 @@
         "remark-directive": "^4.0.0",
         "unist-util-is": "^6.0.0",
         "unist-util-visit": "^5.0.0"
-    }
+    },
+    "packageManager": "yarn@4.10.3"
 }
