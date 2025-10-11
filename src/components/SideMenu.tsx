@@ -1,12 +1,12 @@
 import { ListIcon, MoonIcon, SunIcon, XIcon } from "@phosphor-icons/react";
+import { handleToggleClick } from "astro-theme-toggle";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import type { NavigationTreeNode } from "../lib/navigation";
+import type { ContentTree } from "../lib/content-trees";
 import { Navigation } from "./Navigation";
-import { handleToggleClick } from "astro-theme-toggle";
 
-export function SideNavigation({ tree, pathname }: { tree: NavigationTreeNode[]; pathname: string }) {
+export function SideMenu({ tree, pathname }: { tree: ContentTree; pathname: string }) {
     const [expanded, setExpanded] = useState(false);
 
     const [theme, setTheme] = useState("light");
@@ -31,7 +31,6 @@ export function SideNavigation({ tree, pathname }: { tree: NavigationTreeNode[];
                 className="px-1 text-xl"
                 onClick={() => {
                     setExpanded(true);
-                    console.log("aaa");
                 }}
             >
                 <ListIcon />
@@ -72,7 +71,7 @@ export function SideNavigation({ tree, pathname }: { tree: NavigationTreeNode[];
                             <div className="mt-4 px-3">
                                 <Navigation tree={tree} pathname={pathname} />
                             </div>
-                            <div className="mt-auto mb-0 py-2 px-3 opacity-60">
+                            <div className="mt-auto mb-0 py-2 px-3 opacity-60 font-mono">
                                 <a href="https://hornik.dev" target="_blank" className="text-sm">
                                     &copy; {new Date().getFullYear()} Ian Hornik
                                 </a>

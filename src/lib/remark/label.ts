@@ -15,8 +15,6 @@ const remarkLabel: RemarkPlugin = () => {
                 type: "html",
                 value: `<a id="${label}" name="${label}"></a>`,
             });
-
-            console.log(node);
         });
     };
 };

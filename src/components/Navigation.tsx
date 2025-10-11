@@ -1,8 +1,8 @@
 import { twMerge } from "tailwind-merge";
-import type { NavigationTreeNode } from "../lib/navigation";
-import { anyInTree } from "../lib/navigation-utils";
+import { getContentNodeHref, type ContentTreeNode } from "../lib/content-trees";
+import { anyChildOrSelf } from "../lib/trees";
 
-export function Navigation({ tree, pathname }: { tree: NavigationTreeNode[]; pathname: string }) {
+export function Navigation({ tree, pathname }: { tree: ContentTreeNode[]; pathname: string }) {
     pathname = pathname.replace(/\/$/, "");
 
     return (
@@ -12,40 +12,36 @@ export function Navigation({ tree, pathname }: { tree: NavigationTreeNode[]; pat
                 {tree
                     .toSorted((a, b) => a.order - b.order)
                     .map((t) => (
-                        <NavigationItem key={t.key} node={t} pathname={pathname} />
+                        <NavigationItem key={t.key} node={t} currentPathname={pathname} />
                     ))}
             </ol>
         </nav>
     );
 }
 
-function NavigationItem({ node, pathname }: { node: NavigationTreeNode; pathname: string }) {
-    const expanded = node.href && anyInTree(node, (n) => n.href === pathname);
-    const focused = node.href === pathname;
+function NavigationItem({ node, currentPathname }: { node: ContentTreeNode; currentPathname?: string }) {
+    const href = getContentNodeHref(node);
+
+    const expanded = currentPathname && href && anyChildOrSelf(node, (n) => getContentNodeHref(n) === currentPathname);
+    const focused = currentPathname && href === currentPathname;
 
     return (
         <li className="my-1 marker:text-neutral-400 dark:marker:text-neutral-500 marker:text-xs">
-            {node.href ? (
-                <a
-                    href={node.href}
-                    className={twMerge(
-                        "inline-block hover:underline underline-offset-2 decoration-2",
-                        expanded ? "text-foreground" : "text-neutral-400 dark:text-neutral-400",
-                        focused && "font-bold",
-                    )}
-                >
-                    {node.title ?? node.key}
-                </a>
-            ) : (
-                <span>{node.title ?? node.key}</span>
-            )}
+            <a
+                href={href}
+                className={twMerge(
+                    "inline-block hover:underline underline-offset-2 decoration-2",
+                    expanded ? "text-foreground" : "text-neutral-400 dark:text-neutral-400",
+                    focused && "font-bold",
+                )}
+            >
+                {node.title ?? node.key}
+            </a>
             {expanded && node.children && node.children.length > 0 && (
                 <ol className="pl-8 list-[lower-roman]" type="i">
-                    {node.children
-                        .toSorted((a, b) => a.order - b.order)
-                        .map((n) => (
-                            <NavigationItem key={n.key} node={n} pathname={pathname} />
-                        ))}
+                    {node.children.map((n) => (
+                        <NavigationItem key={n.key} node={n} currentPathname={currentPathname} />
+                    ))}
                 </ol>
             )}
         </li>
