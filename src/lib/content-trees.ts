@@ -55,13 +55,16 @@ export function buildContentTree(entries: Awaited<ReturnType<typeof getCollectio
         }
     }
 
+    const sortingFn = (a: ContentTreeNode, b: ContentTreeNode) => a.order - b.order;
     const sortChildrenRecursively = (node: ContentTreeNode): void => {
         if (!node.children) return;
 
-        node.children.sort((a, b) => a.order - b.order);
+        node.children.sort(sortingFn);
         node.children.forEach(sortChildrenRecursively);
     };
+
     tree.forEach(sortChildrenRecursively);
+    tree.sort(sortingFn);
 
     return tree;
 }

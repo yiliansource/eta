@@ -5,25 +5,11 @@ import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import type { ContentTree } from "../lib/content-trees";
 import { Navigation } from "./Navigation";
+import { useIsDarkTheme } from "../lib/theme";
 
 export function SideMenu({ tree, pathname }: { tree: ContentTree; pathname: string }) {
     const [expanded, setExpanded] = useState(false);
-
-    const [theme, setTheme] = useState("light");
-
-    useEffect(() => {
-        const observer = new MutationObserver(() => {
-            const newTheme = document.documentElement.getAttribute("data-theme") || "light";
-            setTheme(newTheme);
-        });
-
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["data-theme"],
-        });
-
-        return () => observer.disconnect();
-    }, []);
+    const isDark = useIsDarkTheme();
 
     return (
         <>
@@ -62,7 +48,7 @@ export function SideMenu({ tree, pathname }: { tree: ContentTree; pathname: stri
                         >
                             <div className="p-4 flex flex-row justify-between text-2xl opacity-60">
                                 <div onClick={(e) => handleToggleClick({ clientX: e.clientX, clientY: e.clientY })}>
-                                    {theme === "light" ? <MoonIcon /> : <SunIcon />}
+                                    {isDark ? <SunIcon /> : <MoonIcon />}
                                 </div>
                                 <div className="" onClick={() => setExpanded(false)}>
                                     <XIcon />

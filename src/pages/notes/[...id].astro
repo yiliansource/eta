@@ -8,8 +8,9 @@ import { buildContentTree, buildCrumbs, urlifyPostId } from "../../lib/content-t
 import * as components from "../../lib/remark/mdx-components";
 import { getContentNodeHref } from "../../lib/content-trees";
 import { getPrevNextInTree } from "../../lib/trees";
-import ArrowLeft from 'phosphor-astro/ArrowLeft.astro'
-import ArrowRight from 'phosphor-astro/ArrowRight.astro'
+import ArrowLeft from "phosphor-astro/ArrowLeft.astro";
+import ArrowRight from "phosphor-astro/ArrowRight.astro";
+import BookOpen from "phosphor-astro/BookOpen.astro";
 
 export async function getStaticPaths() {
     const notes = await getCollection("notes", ({ data }) => !import.meta.env.PROD || !data.draft);
@@ -20,7 +21,7 @@ export async function getStaticPaths() {
         .map((post) => {
             return {
                 params: { id: urlifyPostId(post.id) },
-                props: { 
+                props: {
                     post,
                     tree,
                 },
@@ -29,9 +30,14 @@ export async function getStaticPaths() {
 }
 
 const { post, tree } = Astro.props;
+
 const key = urlifyPostId(post.id);
 const crumbs = buildCrumbs(tree, urlifyPostId(post.id));
 const { prev, next } = getPrevNextInTree(tree, (n) => n.key === key);
+
+const words = post.body?.split(" ").length ?? 0;
+const wpm = 120;
+const estimatedReadingTime = words / wpm;
 
 const { Content, remarkPluginFrontmatter } = await render(post);
 ---
@@ -72,14 +78,35 @@ const { Content, remarkPluginFrontmatter } = await render(post);
             )
         }
         <h1 class="mb-6 font-bold text-5xl leading-14 text-left">{post.data.title}</h1>
-        {prev && <a class="italic not-prose text-neutral-500 flex flex-row gap-1 items-center" href={getContentNodeHref(prev)}>
-            <ArrowLeft class="size-5" />
-            <span>Go back to: {prev.title}</span>
-        </a>}
+        {
+            prev && (
+                <a
+                    class="not-prose text-sm font-mono text-neutral-500 flex flex-row gap-2 items-center"
+                    href={getContentNodeHref(prev)}
+                >
+                    <ArrowLeft class="size-5" />
+                    <span>{prev.title}</span>
+                </a>
+            )
+        }
+
+        <p class="flex flex-row items-center gap-2 font-mono text-sm text-neutral-600 dark:text-neutral-400">
+            <BookOpen class="size-5" />
+            Estimated reading time: {Math.floor(estimatedReadingTime)} min
+        </p>
+
         <Content components={{ ...components }} />
-        {next && <a class="mt-8 italic not-prose text-neutral-500 flex flex-row gap-2 items-center" href={getContentNodeHref(next)}>
-            <span>Continue reading: {next.title}</span>
-            <ArrowRight class="size-5" />
-        </a>}
+
+        {
+            next && (
+                <a
+                    class="mt-8 not-prose text-sm font-mono text-neutral-500 flex flex-row gap-2 items-center"
+                    href={getContentNodeHref(next)}
+                >
+                    <span>{next.title}</span>
+                    <ArrowRight class="size-5" />
+                </a>
+            )
+        }
     </article>
 </Layout>
