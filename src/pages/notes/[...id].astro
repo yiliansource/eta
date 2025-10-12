@@ -92,7 +92,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 
         <p class="flex flex-row items-center gap-2 font-mono text-sm text-neutral-600 dark:text-neutral-400">
             <BookOpen class="size-5" />
-            Estimated reading time: {Math.floor(estimatedReadingTime)} min
+            Estimated reading time: {Math.ceil(estimatedReadingTime)} min
         </p>
 
         <Content components={{ ...components }} />
