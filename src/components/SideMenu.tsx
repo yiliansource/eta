@@ -35,7 +35,7 @@ export function SideMenu({ tree, pathname }: { tree: ContentTree; pathname: stri
                             onClick={() => setExpanded(false)}
                         ></motion.div>
                         <motion.div
-                            className={twMerge("fixed flex flex-col top-0 bottom-0 left-full w-64 bg-background z-110")}
+                            className={twMerge("fixed flex flex-col top-0 bottom-0 left-full w-64 bg-bg z-110")}
                             variants={{
                                 hidden: { translateX: 0 },
                                 visible: { translateX: "-100%" },

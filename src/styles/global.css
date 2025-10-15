@@ -9,8 +9,12 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @theme {
-    --color-foreground: var(--color-neutral-900);
-    --color-background: var(--color-neutral-50);
+    --color-fg: var(--color-neutral-900);
+    --color-fg-dim: --alpha(var(--color-fg) / 75%);
+    --color-fg-dimmer: --alpha(var(--color-fg) / 50%);
+    --color-fg-dimmest: --alpha(var(--color-fg) / 15%);
+
+    --color-bg: var(--color-neutral-50);
 }
 @theme inline {
     --font-sans: "Geist Sans";
@@ -20,8 +24,9 @@
 @layer theme {
     :root {
         @variant dark {
-            --color-foreground: var(--color-neutral-100);
-            --color-background: var(--color-neutral-900);
+            --color-fg: var(--color-neutral-100);
+
+            --color-bg: var(--color-neutral-900);
         }
     }
 }
@@ -39,6 +44,6 @@ html {
 }
 
 body {
-    color: var(--color-foreground);
-    background-color: var(--color-background);
+    color: var(--color-fg);
+    background-color: var(--color-bg);
 }

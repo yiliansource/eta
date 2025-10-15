@@ -58,7 +58,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
     >
         {
             crumbs && crumbs.length > 1 && (
-                <span class="not-prose font-mono text-neutral-500 dark:text-neutral-400">
+                <span class="not-prose font-mono text-fg-dimmer">
                     {interweave(
                         crumbs
                             .map((c) => (
@@ -71,7 +71,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
                             ))
                             .slice(0, -1),
                         (e, i) => (
-                            <span class="mx-2 text-neutral-300 dark:text-neutral-600">/</span>
+                            <span class="mx-2 opacity-50">/</span>
                         )
                     )}
                 </span>
@@ -82,7 +82,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 
         {
             prev && (
-                <p class="not-prose text-sm font-mono text-neutral-500">
+                <p class="not-prose text-sm font-mono text-fg-dimmer">
                     <a class="py-1 inline-flex flex-row gap-2 items-center" href={getContentNodeHref(prev)}>
                         <ArrowLeft class="size-5" />
                         <span>{prev.title}</span>
@@ -91,7 +91,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
             )
         }
 
-        <p class="flex flex-row items-center gap-2 font-mono text-sm text-neutral-600 dark:text-neutral-400">
+        <p class="flex flex-row items-center gap-2 font-mono text-sm text-fg-dim">
             <BookOpen class="size-5" />
             Estimated reading time: {Math.ceil(estimatedReadingTime)} min
         </p>
@@ -100,7 +100,7 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 
         {
             next && (
-                <p class="mt-8 not-prose text-sm font-mono text-neutral-500">
+                <p class="mt-8 not-prose text-sm font-mono text-fg-dimmer">
                     <a class="py-1 inline-flex flex-row gap-2 items-center" href={getContentNodeHref(next)}>
                         <span>{next.title}</span>
                         <ArrowRight class="size-5" />

@@ -43,11 +43,11 @@ const contentTree = buildContentTree(notes);
                         <a href="https://hornik.dev" target="_blank" class="text-sm hover:underline"
                             >&copy; {new Date().getFullYear()} Ian Hornik</a
                         >
-                        <ThemeToggle client:load className="-mb-1" />
+                        <ThemeToggle client:only="react" className="-mb-1" />
                     </div>
                 </div>
                 <div
-                    class="fixed top-0 w-full bg-background border-b border-neutral-200 dark:border-neutral-700 md:hidden -mx-3 py-4 px-3 flex flex-row justify-between items-center md:basis-2/3 z-100"
+                    class="fixed top-0 w-full bg-bg border-b border-fg-dimmest md:hidden -mx-3 py-4 px-3 flex flex-row justify-between items-center md:basis-2/3 z-100"
                 >
                     <a href="/" class="block px-1 -mt-3 font-mono text-4xl font-bold text-center">η</a>
                     <SideMenu tree={contentTree} pathname={Astro.url.pathname} client:load />
