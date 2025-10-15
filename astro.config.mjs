@@ -13,6 +13,7 @@ import remarkProof from "./src/lib/remark/proof";
 import remarkTheorem from "./src/lib/remark/theorem";
 
 export default defineConfig({
+    site: "https://eta.hornik.dev",
     vite: {
         plugins: [tailwindcss()],
     },

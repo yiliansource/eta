@@ -17,8 +17,12 @@ export function ThemeToggle({ className }: { className?: string }) {
     }, []);
 
     return (
-        <motion.div className={twMerge("p-2 cursor-pointer text-xl", className)} onClick={handleClick}>
-            <AnimatePresence mode="wait">
+        <motion.div
+            className={twMerge("p-2 cursor-pointer text-xl", className)}
+            onClick={handleClick}
+            suppressHydrationWarning
+        >
+            <AnimatePresence mode="wait" initial={false}>
                 <motion.div
                     key={String(isDark)}
                     initial={{ scale: 0 }}

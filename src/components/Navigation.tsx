@@ -1,5 +1,5 @@
 import { CaretDownIcon, MinusIcon, PlusIcon, ShieldChevronIcon, TagChevronIcon } from "@phosphor-icons/react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 
@@ -33,9 +33,14 @@ function NavigationItem({ node, currentPathname }: { node: ContentTreeNode; curr
     const [expanded, setExpanded] = useState(active);
 
     return (
-        <li className={twMerge("relative my-1 pl-4", active ? "text-foreground" : "text-fg-dim")}>
+        <li
+            className={twMerge(
+                "relative leading-6 py-[3px] pl-4 overflow-hidden",
+                active ? "text-foreground" : "text-fg-dim",
+            )}
+        >
             {hasChildren && (
-                <div className="absolute -left-1 top-[2px] p-1 cursor-pointer" onClick={() => setExpanded(!expanded)}>
+                <div className="absolute -left-1 top-[4px] p-1 cursor-pointer" onClick={() => setExpanded(!expanded)}>
                     <motion.div animate={{ rotateZ: expanded ? 0 : -90 }}>
                         <CaretDownIcon className="size-3" />
                     </motion.div>
@@ -50,13 +55,22 @@ function NavigationItem({ node, currentPathname }: { node: ContentTreeNode; curr
             >
                 {node.title ?? node.key}
             </a>
-            {expanded && hasChildren && (
-                <ol className="" type="i">
-                    {node.children!.map((n) => (
-                        <NavigationItem key={n.key} node={n} currentPathname={currentPathname} />
-                    ))}
-                </ol>
-            )}
+
+            <AnimatePresence initial={false}>
+                {expanded && hasChildren && (
+                    <motion.ol
+                        className=""
+                        type="i"
+                        initial={{ height: 0 }}
+                        animate={{ height: "auto" }}
+                        exit={{ height: 0 }}
+                    >
+                        {node.children!.map((n) => (
+                            <NavigationItem key={n.key} node={n} currentPathname={currentPathname} />
+                        ))}
+                    </motion.ol>
+                )}
+            </AnimatePresence>
         </li>
     );
 }
