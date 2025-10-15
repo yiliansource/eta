@@ -56,18 +56,18 @@ export function getPrevNextInTree<T extends OrderedTreeNode>(
     const parent = path[path.length - 2];
     const grandparent = path[path.length - 3];
 
-    const children = parent?.children ?? tree;
-    const index = children.findIndex(predicate);
+    const siblings = parent?.children ?? tree;
+    const index = siblings.findIndex(predicate);
 
     const parentSiblings = parent ? (grandparent?.children! ?? tree) : [];
     const parentIndex = parentSiblings.indexOf(parent);
 
     return {
-        prev: children[index - 1] ?? parent,
-        next: children[index]!.children
-            ? children[index]!.children[0]
-            : index + 1 < children.length
-              ? children[index + 1]
+        prev: siblings[index - 1] ?? parent,
+        next: siblings[index]!.children
+            ? siblings[index]!.children[0]
+            : index + 1 < siblings.length
+              ? siblings[index + 1]
               : parentIndex > -1
                 ? parentSiblings[parentIndex + 1]
                 : null,
