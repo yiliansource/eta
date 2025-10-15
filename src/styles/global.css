@@ -18,8 +18,7 @@
 }
 
 @layer theme {
-    :root,
-    :host {
+    :root {
         @variant dark {
             --color-foreground: var(--color-neutral-100);
             --color-background: var(--color-neutral-900);
@@ -35,11 +34,11 @@ body {
 
 html {
     font-family: var(--font-sans), sans-serif;
+
+    scrollbar-gutter: stable;
 }
 
 body {
     color: var(--color-foreground);
     background-color: var(--color-background);
-
-    scrollbar-gutter: stable;
 }

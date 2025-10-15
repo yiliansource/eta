@@ -1,7 +1,7 @@
 import type { RemarkPlugin } from "@astrojs/markdown-remark";
-import { visit } from "unist-util-visit";
+import type { Content, Root } from "mdast";
 import { toString } from "mdast-util-to-string";
-import type { Root, Content } from "mdast";
+import { visit } from "unist-util-visit";
 
 const remarkExcerpt: RemarkPlugin = () => {
     return (tree: Root, file) => {

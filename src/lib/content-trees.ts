@@ -1,5 +1,6 @@
 import type { getCollection } from "astro:content";
-import { bfs, type OrderedTree, type OrderedTreeNode } from "./trees";
+
+import { type OrderedTree, type OrderedTreeNode, bfs } from "./trees";
 
 export type ContentTree = OrderedTree<ContentTreeNode>;
 export interface ContentTreeNode extends OrderedTreeNode {

@@ -1,5 +1,6 @@
 import { twMerge } from "tailwind-merge";
-import { getContentNodeHref, type ContentTreeNode } from "../lib/content-trees";
+
+import { type ContentTreeNode, getContentNodeHref } from "../lib/content-trees";
 import { anyChildOrSelf } from "../lib/trees";
 
 export function Navigation({ tree, pathname }: { tree: ContentTreeNode[]; pathname: string }) {

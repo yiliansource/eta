@@ -1,6 +1,6 @@
 import type { RemarkPlugin } from "@astrojs/markdown-remark";
-import { visit } from "unist-util-visit";
 import { toString } from "mdast-util-to-string";
+import { visit } from "unist-util-visit";
 
 const remarkLabel: RemarkPlugin = () => {
     return (tree) => {

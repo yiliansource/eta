@@ -1,20 +1,19 @@
-import { ListIcon, MoonIcon, SunIcon, XIcon } from "@phosphor-icons/react";
-import { handleToggleClick } from "astro-theme-toggle";
+import { ListIcon, XIcon } from "@phosphor-icons/react";
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
+
 import type { ContentTree } from "../lib/content-trees";
 import { Navigation } from "./Navigation";
-import { useIsDarkTheme } from "../lib/theme";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function SideMenu({ tree, pathname }: { tree: ContentTree; pathname: string }) {
     const [expanded, setExpanded] = useState(false);
-    const isDark = useIsDarkTheme();
 
     return (
         <>
             <div
-                className="px-1 text-xl"
+                className="p-2 text-xl"
                 onClick={() => {
                     setExpanded(true);
                 }}
@@ -46,11 +45,9 @@ export function SideMenu({ tree, pathname }: { tree: ContentTree; pathname: stri
                             exit="hidden"
                             transition={{ ease: "easeInOut" }}
                         >
-                            <div className="p-4 flex flex-row justify-between text-2xl opacity-60">
-                                <div onClick={(e) => handleToggleClick({ clientX: e.clientX, clientY: e.clientY })}>
-                                    {isDark ? <SunIcon /> : <MoonIcon />}
-                                </div>
-                                <div className="" onClick={() => setExpanded(false)}>
+                            <div className="p-2 flex flex-row justify-between text-xl opacity-60">
+                                <ThemeToggle className="" />
+                                <div className="p-2" onClick={() => setExpanded(false)}>
                                     <XIcon />
                                 </div>
                             </div>

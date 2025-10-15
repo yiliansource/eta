@@ -1,18 +1,16 @@
 // @ts-check
-import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
-
 import tailwindcss from "@tailwindcss/vite";
-
-import remarkMath from "remark-math";
+import { defineConfig } from "astro/config";
 import rehypeKatex from "rehype-katex";
 import remarkDirective from "remark-directive";
+import remarkMath from "remark-math";
 
-import remarkTheorem from "./src/lib/remark/theorem";
-import remarkProof from "./src/lib/remark/proof";
 import remarkExcerpt from "./src/lib/remark/excerpt";
 import remarkLabel from "./src/lib/remark/label";
+import remarkProof from "./src/lib/remark/proof";
+import remarkTheorem from "./src/lib/remark/theorem";
 
 export default defineConfig({
     vite: {

@@ -77,16 +77,17 @@ const { Content, remarkPluginFrontmatter } = await render(post);
                 </span>
             )
         }
+
         <h1 class="mb-6 font-bold text-5xl leading-14 text-left">{post.data.title}</h1>
+
         {
             prev && (
-                <a
-                    class="not-prose text-sm font-mono text-neutral-500 flex flex-row gap-2 items-center"
-                    href={getContentNodeHref(prev)}
-                >
-                    <ArrowLeft class="size-5" />
-                    <span>{prev.title}</span>
-                </a>
+                <p class="not-prose text-sm font-mono text-neutral-500">
+                    <a class="py-1 inline-flex flex-row gap-2 items-center" href={getContentNodeHref(prev)}>
+                        <ArrowLeft class="size-5" />
+                        <span>{prev.title}</span>
+                    </a>
+                </p>
             )
         }
 
@@ -99,13 +100,12 @@ const { Content, remarkPluginFrontmatter } = await render(post);
 
         {
             next && (
-                <a
-                    class="mt-8 not-prose text-sm font-mono text-neutral-500 flex flex-row gap-2 items-center"
-                    href={getContentNodeHref(next)}
-                >
-                    <span>{next.title}</span>
-                    <ArrowRight class="size-5" />
-                </a>
+                <p class="mt-8 not-prose text-sm font-mono text-neutral-500">
+                    <a class="py-1 inline-flex flex-row gap-2 items-center" href={getContentNodeHref(next)}>
+                        <span>{next.title}</span>
+                        <ArrowRight class="size-5" />
+                    </a>
+                </p>
             )
         }
     </article>
